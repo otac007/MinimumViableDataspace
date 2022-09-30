@@ -60,7 +60,7 @@ jobs:
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
       - name: 'Login to ACR'
-        run: az acr login -n $ACR_NAME
+        run: az acr login -n otac007
 
       - uses: ./.github/actions/gradle-setup
 
