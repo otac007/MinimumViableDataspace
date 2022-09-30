@@ -112,7 +112,7 @@ jobs:
       - Inputs
     runs-on: ubuntu-latest
     env:
-      ACR_NAME: ${{ secrets.ACR_NAME }}
+      ACR_NAME: otac007
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/gradle-setup
@@ -124,7 +124,7 @@ jobs:
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
       - name: 'Login to ACR'
-        run: az acr login -n $ACR_NAME
+        run: az acr login -n otac007
 
       # Build Docker runtime image remotely on ACR & push it to the registry.
       - name: 'Build image'
