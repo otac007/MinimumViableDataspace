@@ -187,10 +187,10 @@ jobs:
         run: |
           # Create backend.conf file to retrieve the remote terraform state during terraform init.
           echo '
-            resource_group_name  = "${{ secrets.COMMON_RESOURCE_GROUP }}"
-            storage_account_name = "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}"
-            container_name       = "${{ secrets.TERRAFORM_STATE_CONTAINER }}"
-            key                  = "${{ env.RESOURCES_PREFIX }}.tfstate"
+            resource_group_name  = "allgemein"
+            storage_account_name = "otac007b"
+            container_name       = "otac007b"
+            key                  = "otac007.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
           terraform apply -auto-approve
@@ -327,10 +327,10 @@ jobs:
         run: |
           # Create backend.conf file to retrieve the remote terraform state during terraform init.
           echo '
-            resource_group_name  = "${{ secrets.COMMON_RESOURCE_GROUP }}"
-            storage_account_name = "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}"
-            container_name       = "${{ secrets.TERRAFORM_STATE_CONTAINER }}"
-            key                  = "${{ matrix.participant }}${{ env.RESOURCES_PREFIX }}.tfstate"
+            resource_group_name  = "allgemein"
+            storage_account_name = "otac007b"
+            container_name       = "otac007b"
+            key                  = "otac007.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
           terraform apply -auto-approve
