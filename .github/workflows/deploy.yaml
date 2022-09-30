@@ -188,8 +188,8 @@ jobs:
           # Create backend.conf file to retrieve the remote terraform state during terraform init.
           echo '
             resource_group_name  = "${{ secrets.COMMON_RESOURCE_GROUP }}"
-            storage_account_name = otac007b
-            container_name       = otac007b
+            storage_account_name = "otac007b"
+            container_name       = "otac007b"
             key                  = "${{ env.RESOURCES_PREFIX }}.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
@@ -328,8 +328,8 @@ jobs:
           # Create backend.conf file to retrieve the remote terraform state during terraform init.
           echo '
             resource_group_name  = "${{ secrets.COMMON_RESOURCE_GROUP }}"
-            storage_account_name = otac007
-            container_name       = otac007
+            storage_account_name = "otac007b"
+            container_name       = "otac007b"
             key                  = "${{ matrix.participant }}${{ env.RESOURCES_PREFIX }}.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
