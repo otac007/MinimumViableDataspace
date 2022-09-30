@@ -23,7 +23,7 @@ permissions:
 
 env:
   RESOURCES_PREFIX: ${{ github.event.inputs.resources_prefix || inputs.resources_prefix }}
-  ACR_NAME: ${{ secrets.ACR_NAME }}
+  ACR_NAME: otac007
 
 jobs:
   Inputs:
@@ -117,10 +117,10 @@ jobs:
         run: |
           # Create backend.conf file to retrieve the remote terraform state during terraform init.
           echo '
-            resource_group_name  = "${{ secrets.COMMON_RESOURCE_GROUP }}"
-            storage_account_name = "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}"
-            container_name       = "${{ secrets.TERRAFORM_STATE_CONTAINER }}"
-            key                  = "${{ env.RESOURCES_PREFIX }}.tfstate"
+            resource_group_name  = "allgemein"
+            storage_account_name = "otac007b"
+            container_name       = "otac007b"
+            key                  = "otac007.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
           terraform destroy -auto-approve
@@ -136,7 +136,7 @@ jobs:
 
       # See Destroy-Participants job for explanation about the completion marker blob
       - name: 'Completion marker blob'
-        run: az storage blob upload --account-name "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}" -c "${{ secrets.TERRAFORM_STATE_CONTAINER }}" -f /dev/null -n "${{ env.RESOURCES_PREFIX }}.completed" --auth-mode key
+        run: az storage blob upload --account-name otac007b -c otac007b -f /dev/null -n "${{ env.RESOURCES_PREFIX }}.completed" --auth-mode key
 
   # Post-Destroy jobs must wait for all Destroy jobs to complete, so that their failure does not interrupt in-progress Destroy jobs
 
@@ -161,7 +161,7 @@ jobs:
         run: |
           for extension in tfvars tfstate completed
           do
-            az storage blob delete --account-name "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}" -c "${{ secrets.TERRAFORM_STATE_CONTAINER }}" -n "${{ matrix.participant }}${{ env.RESOURCES_PREFIX }}.$extension" --auth-mode key
+            az storage blob delete --account-name otac007b -c otac007b -n "${{ matrix.participant }}${{ env.RESOURCES_PREFIX }}.$extension" --auth-mode key
           done
 
   Post-Destroy-Dataspace:
@@ -183,12 +183,12 @@ jobs:
         run: |
           for extension in tfvars tfstate completed
           do
-            az storage blob delete --account-name "${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT }}" -c "${{ secrets.TERRAFORM_STATE_CONTAINER }}" -n "${{ env.RESOURCES_PREFIX }}.$extension" --auth-mode key
+            az storage blob delete --account-name otac007b -c otac007b -n "${{ env.RESOURCES_PREFIX }}.$extension" --auth-mode key
           done
 
       - name: 'Delete ACR images'
         run: |
           for image in mvd/connector mvd/registration-service mvd/data-dashboard
           do
-            az acr repository delete --name $ACR_NAME --image $image:$RESOURCES_PREFIX --yes
+            az acr repository delete --name otac007 --image $image:$RESOURCES_PREFIX --yes
           done
