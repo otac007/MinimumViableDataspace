@@ -36,7 +36,7 @@ variable "common_resourcegroup_location" {
 }
 # Resource group that'll contain common resources, such as the ACR
 variable "common_resourcegroup" {
-  default = "mvd-common"
+  default = "otac007"
 }
 # Name of the Azure Container Registry that'll hold all docker images
 variable "acr_name" {
