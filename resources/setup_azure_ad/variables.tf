@@ -1,4 +1,4 @@
-# supply the tenant ID for your Azure Tenant here
+# supply the tenant ID for your Azure Tenant here.
 variable "tenant_id" {
   default = "72cc38a0-50f3-4780-a074-5c3adba5c0dc"
 }
