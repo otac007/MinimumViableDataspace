@@ -193,7 +193,7 @@ jobs:
             key                  = "otac007.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
-          terraform apply -auto-approve
+          terraform apply -auto-approve -lock=false
           connector_name=$(terraform output -raw connector_name)
           echo "::set-output name=connector_name::${connector_name}"
           key_vault=$(terraform output -raw key_vault)
@@ -333,7 +333,7 @@ jobs:
             key                  = "otac007.tfstate"
           ' >> backend.conf
           terraform init -backend-config=backend.conf
-          terraform apply -auto-approve
+          terraform apply -auto-approve -lock=false
           CONNECTOR_NAME=$(terraform output -raw connector_name)
           PARTICIPANT_DID_HOST=$(terraform output -raw participant_did_host)
           EDC_HOST=$(terraform output -raw edc_host)
