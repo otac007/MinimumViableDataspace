@@ -47,7 +47,7 @@ jobs:
       - Inputs
     runs-on: ubuntu-latest
     env:
-      ACR_NAME: ${{ secrets.ACR_NAME }}
+      ACR_NAME: otac007
     steps:
       # Checkout MVD code
       - uses: actions/checkout@v2
