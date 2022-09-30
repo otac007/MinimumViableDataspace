@@ -1,6 +1,6 @@
 # supply the tenant ID for your Azure Tenant here
 variable "tenant_id" {
-  default = "<YOUR_TENANT_ID>"
+  default = "72cc38a0-50f3-4780-a074-5c3adba5c0dc"
 }
 # App registration name for the Federated Credential for GH Actions
 variable "gh_actions_appname" {
@@ -20,7 +20,7 @@ variable "application_fc_pr_name" {
 }
 # name of your fork of MVD
 variable "github_repo" {
-  default = "<YOUR_FORK>/MinimumViableDataspace"
+  default = "otac007/MinimumViableDataspace"
 }
 # name of the storage account that'll hold the Terraform State for MVD deployments
 variable "tf_state_storageaccount" {
