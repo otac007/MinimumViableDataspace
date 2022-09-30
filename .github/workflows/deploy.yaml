@@ -93,7 +93,7 @@ jobs:
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
 
       - name: 'Login to ACR'
-        run: az acr login -n $ACR_NAME
+        run: az acr login -n otac007
 
       # Build Registration Service runtime JAR locally.
       # The result is a JAR file in launcher/build/libs.
